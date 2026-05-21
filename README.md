@@ -18,7 +18,7 @@ uv sync
 python -c "import torch; print(torch.cuda.is_available())"
 ```
 
-## quants
+## quantizing
 
 ### gguf
 
@@ -42,3 +42,18 @@ quick test
 ```
 
 *official hf space*: https://huggingface.co/spaces/ggml-org/gguf-my-repo
+
+#### perplexity
+
+*TODO*
+
+```sh
+./llama.cpp/llama-perplexity -m ./qwen2-0.5b-Q4_K_M.gguf wikitext-2-raw/wiki.test.raw
+```
+
+
+## evaluating
+
+*TODO*
+
+`lm-eval-harness`

@@ -3,9 +3,9 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-# MODEL_SRC  = "Qwen/Qwen2-0.5B"
-MODEL_SRC = "./qwen2-0.5b"
-SAVE_DIR = "./qwen2-0.5b-nf4"
+# MODEL_SRC  = "Qwen/Qwen2.5-3B"
+MODEL_SRC = "./qwen2.5-3b"
+SAVE_DIR = "./qwen2.5-3b-nf4"
 
 # -- Quantize --
 bnb_config = BitsAndBytesConfig(

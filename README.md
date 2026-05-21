@@ -3,11 +3,11 @@
 
 ## models
 
-### qwen2-0.5b
+### qwen2.5-3b
 
-*repo*: https://huggingface.co/Qwen/Qwen2-0.5B
+*repo*: https://huggingface.co/Qwen/Qwen2.5-3B
 ```sh
-hf download Qwen/Qwen2-0.5B --local-dir ./qwen2-0.5b
+hf download Qwen/Qwen2.5-3B --local-dir ./qwen2.5-3b
 ```
 
 ## quick setup
@@ -27,18 +27,15 @@ python -c "import torch; print(torch.cuda.is_available())"
 quantize in two steps
 ```sh
 # convert HF → F16 GGUF (lossless, intermediate step)
-python llama.cpp/convert_hf_to_gguf.py ./qwen2-0.5b --outtype f16 --outfile ./qwen2-0.5b-f16.gguf
+python llama.cpp/convert_hf_to_gguf.py ./qwen2.5-3b --outtype f16 --outfile ./qwen2.5-3b-f16.gguf
 
 # quantize F16 → Q4_K_M
-./llama.cpp/llama-quantize ./qwen2-0.5b-f16.gguf ./qwen2-0.5b-Q4_K_M.gguf Q4_K_M
+./llama.cpp/llama-quantize ./qwen2.5-3b-f16.gguf ./qwen2.5-3b-Q4_K_M.gguf Q4_K_M
 ```
 
 quick test
 ```sh
-./llama.cpp/llama-cli \
-    -m ./qwen2-0.5b-q4km.gguf \
-    -p "The capital of France is" \
-    -n 20
+./llama.cpp/llama-cli -m ./qwen2.5-3b-Q4_K_M.gguf -p "The capital of France is" -n 20
 ```
 
 *official hf space*: https://huggingface.co/spaces/ggml-org/gguf-my-repo
@@ -48,7 +45,7 @@ quick test
 *TODO*
 
 ```sh
-./llama.cpp/llama-perplexity -m ./qwen2-0.5b-Q4_K_M.gguf wikitext-2-raw/wiki.test.raw
+./llama.cpp/llama-perplexity -m ./qwen2.5-3b-Q4_K_M.gguf wikitext-2-raw/wiki.test.raw
 ```
 
 

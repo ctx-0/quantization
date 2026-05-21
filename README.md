@@ -40,17 +40,30 @@ quick test
 
 *official hf space*: https://huggingface.co/spaces/ggml-org/gguf-my-repo
 
-#### perplexity
-
-*TODO*
-
-```sh
-./llama.cpp/llama-perplexity -m ./qwen2.5-3b-Q4_K_M.gguf wikitext-2-raw/wiki.test.raw
-```
 
 
 ## evaluating
 
-*TODO*
 
 `lm-eval-harness`
+
+### wikitext (perplexity)
+
+measures quantization degradation — compare perplexity across base, NF4, and Q4_K_M; the delta matters, not the absolute value.
+
+> [!NOTE]
+> **OOM**: wikitext uses a rolling window over the full test corpus. Qwen's default context is 32k tokens which blows up VRAM even on small models. cap with `max_length=2048` — results stay comparable as long as it's consistent across runs.
+
+```sh
+# base model (baseline)
+lm_eval --model hf --model_args pretrained=./qwen2.5-3b,max_length=2048 --tasks wikitext --device cuda
+
+# BnB NF4
+lm_eval --model hf --model_args pretrained=./qwen2.5-3b-nf4,max_length=2048 --tasks wikitext --device cuda
+
+# GGUF via HF backend (no server needed)
+lm_eval --model hf --model_args pretrained=./qwen2.5-3b,gguf_file=qwen2.5-3b-Q4_K_M.gguf,max_length=2048 --tasks wikitext --device cuda
+
+# GGUF via llama.cpp server (start server first)
+lm_eval --model gguf --model_args base_url=http://localhost:8080,tokenizer=./qwen2.5-3b --tasks wikitext
+```

@@ -10,6 +10,7 @@ dependencies = [
     "transformers>=5.2.0",
     "accelerate>=0.30.0",
     "bitsandbytes>=0.43.1",
+    "lm-eval>=0.4.12",
 ]
 
 [[tool.uv.index]]

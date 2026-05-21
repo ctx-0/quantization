@@ -1,11 +1,17 @@
 """quantize to NF4"""
 
 import torch
+from argparse import ArgumentParser
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
-# MODEL_SRC  = "Qwen/Qwen2.5-3B"
-MODEL_SRC = "./qwen2.5-3b"
-SAVE_DIR = "./qwen2.5-3b-nf4"
+parser = ArgumentParser()
+parser.add_argument("model_src", help="HF repo id or local path")
+parser.add_argument("save_dir", help="output directory")
+args = parser.parse_args()
+
+MODEL_SRC = args.model_src
+SAVE_DIR = args.save_dir
+
 
 # -- Quantize --
 bnb_config = BitsAndBytesConfig(

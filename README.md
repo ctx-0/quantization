@@ -1,7 +1,11 @@
-# quants
+# quantization
 
 
 ## models
+
+### qwen3.5-9b
+
+*repo*: https://huggingface.co/Qwen/Qwen3.5-9B
 
 ### qwen2.5-3b
 
@@ -40,6 +44,19 @@ quick test
 
 *official hf space*: https://huggingface.co/spaces/ggml-org/gguf-my-repo
 
+### NF4
+
+quantize and save
+```sh
+# from local path
+python ./bnb.py ./qwen2.5-3b ./qwen2.5-3b-nf4
+
+# from HF
+python ./bnb.py Qwen/Qwen2.5-3B ./Qwen2.5-3B-bnb-4bit
+```
+
+loads the model, applies 4-bit NF4 with double quantization (bf16 compute), and saves to the output dir.
+
 ### AWQ
 
 *TODO*
@@ -69,3 +86,11 @@ lm_eval --model hf --model_args pretrained=./qwen2.5-3b,gguf_file=qwen2.5-3b-Q4_
 # GGUF via llama.cpp server (start server first)
 lm_eval --model gguf --model_args base_url=http://localhost:8080,tokenizer=./qwen2.5-3b --tasks wikitext
 ```
+
+## references
+
+1. QLoRA (NF4, double quantization) — Dettmers et al., 2023: https://arxiv.org/abs/2305.14314
+2. LLM.int8() — Dettmers et al., 2022: https://arxiv.org/abs/2208.07339
+3. AWQ — Lin et al., 2023: https://arxiv.org/abs/2306.00978
+4. Qwen2.5-3B: https://huggingface.co/Qwen/Qwen2.5-3B
+5. Qwen3.5-9B: https://huggingface.co/Qwen/Qwen3.5-9B

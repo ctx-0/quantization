@@ -1,6 +1,7 @@
+*.gguf
 qwen2-0.5b/
+qwen2.5-3b/
 qwen2-0.5b-nf4/
-
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

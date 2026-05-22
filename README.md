@@ -1,5 +1,10 @@
 # quantization
 
+quantization playground
+
+- https://huggingface.co/rectx/Qwen3.5-9B-GGUF - Q4_K_M. Q5_K_M
+- https://huggingface.co/rectx/Qwen3.5-4B-bnb-4bit - NF4
+- https://huggingface.co/rectx/Qwen3.5-0.8B-bnb-4bit - NF4
 
 ## models
 
@@ -94,3 +99,4 @@ lm_eval --model gguf --model_args base_url=http://localhost:8080,tokenizer=./qwe
 3. AWQ — Lin et al., 2023: https://arxiv.org/abs/2306.00978
 4. Qwen2.5-3B: https://huggingface.co/Qwen/Qwen2.5-3B
 5. Qwen3.5-9B: https://huggingface.co/Qwen/Qwen3.5-9B
+6. https://gist.github.com/bartowski1182/82ae9b520227f57d79ba04add13d0d0d
